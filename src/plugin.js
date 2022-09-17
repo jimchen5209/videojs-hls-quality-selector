@@ -117,7 +117,7 @@ class HlsQualitySelectorPlugin {
         return _existingItem.item && _existingItem.item.value === pixels;
       }).length) {
         const levelItem = this.getQualityMenuItem.call(this, {
-          label: (pixels) ? `${pixels}p` : 'Source',
+          label: (pixels) ? `${pixels}p` : 'source',
           value: pixels
         });
 
@@ -167,7 +167,20 @@ class HlsQualitySelectorPlugin {
     this._currentQuality = quality;
 
     if (this.config.displayCurrentQuality) {
-      this.setButtonInnerText(quality === 'auto' ? quality : `${quality}p`);
+      let qualityText;
+
+      switch (quality) {
+      case 'auto':
+        qualityText = 'auto';
+        break;
+      case undefined:
+        qualityText = 'source';
+        break;
+      default:
+        qualityText = `${quality}p`;
+      }
+
+      this.setButtonInnerText(qualityText);
     }
 
     for (let i = 0; i < qualityList.length; ++i) {
