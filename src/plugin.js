@@ -113,15 +113,11 @@ class HlsQualitySelectorPlugin {
       const {width, height} = levels[i];
       const pixels = width > height ? height : width;
 
-      if (!pixels) {
-        continue;
-      }
-
       if (!levelItems.filter(_existingItem => {
         return _existingItem.item && _existingItem.item.value === pixels;
       }).length) {
         const levelItem = this.getQualityMenuItem.call(this, {
-          label: pixels + 'p',
+          label: (pixels) ? `${pixels}p` : 'Source',
           value: pixels
         });
 
