@@ -173,11 +173,8 @@ class HlsQualitySelectorPlugin {
       case 'auto':
         qualityText = 'auto';
         break;
-      case undefined:
-        qualityText = 'source';
-        break;
       default:
-        qualityText = `${quality}p`;
+        qualityText = quality !== undefined ? `${quality}p` : 'source';
       }
 
       this.setButtonInnerText(qualityText);
