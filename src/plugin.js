@@ -144,6 +144,8 @@ class HlsQualitySelectorPlugin {
       selected: true
     }));
 
+    levelItems.reverse();
+
     if (this._qualityButton) {
       this._qualityButton.createItems = function() {
         return levelItems;
